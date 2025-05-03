@@ -1,0 +1,23 @@
+{
+  "name": "clean_up_novel",
+  "version": "1.0.0",
+  "description": "소설 파일 중복 검사 및 정리 프로그램",
+  "main": "main.js",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "cli": "node cleanup_novel.js"
+  },
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "glob": "^7.2.0",
+    "iconv-lite": "^0.6.3",
+    "mmap-io": "^1.1.7",
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "electron": "^28.1.0"
+  }
+}
