@@ -61,9 +61,9 @@ A program that finds and organizes duplicate novel files (.txt).
 ## Usage
 
 ### For Users
-Download and run your preferred version from the releases folder:
-- `소설 파일 중복 검사_GUI 1.0.0.exe`: User-friendly graphical interface version
-- `소설 파일 중복 검사_CLI 1.0.0.exe`: Lightweight command-line version
+Download and run your preferred version from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
+- [`소설 파일 중복 검사_GUI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_GUI.1.0.0.exe): User-friendly graphical interface version
+- [`소설 파일 중복 검사_CLI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_CLI.1.0.0.exe): Lightweight command-line version
 
 ### For Developers
 If you want to run the source code:

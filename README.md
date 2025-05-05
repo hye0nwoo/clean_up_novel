@@ -62,9 +62,9 @@
 ## 사용 방법
 
 ### 일반 사용자
-releases 폴더에서 원하는 버전을 다운로드하여 실행하세요:
-- `소설 파일 중복 검사_GUI 1.0.0.exe`: 편리한 그래픽 인터페이스 버전
-- `소설 파일 중복 검사_CLI 1.0.0.exe`: 가벼운 명령줄 버전
+[releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) 페이지에서 원하는 버전을 다운로드하여 실행하세요:
+- [`소설 파일 중복 검사_GUI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_GUI.1.0.0.exe): 편리한 그래픽 인터페이스 버전
+- [`소설 파일 중복 검사_CLI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_CLI.1.0.0.exe): 가벼운 명령줄 버전
 
 ### 개발자를 위한 정보
 소스 코드를 직접 실행하고 싶은 경우:
