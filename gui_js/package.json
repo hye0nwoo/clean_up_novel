@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "소설 파일 중복 검사 및 정리 프로그램",
   "main": "main.js",
+  "license": "MIT",
   "engines": {
     "node": ">=12.0.0"
   },
