@@ -1,0 +1,121 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #45a049;
+}
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.progress {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+.progress-bar {
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0;
+    transition: width 0.3s ease;
+}
+.groups {
+    margin-top: 20px;
+}
+.group {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.group-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.group-header.series {
+    color: #2196F3;
+}
+.series-info {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+.file-item:last-child {
+    border-bottom: none;
+}
+.file-info {
+    flex-grow: 1;
+}
+.file-actions {
+    display: flex;
+    gap: 10px;
+}
+.status {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+.status.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+.status.error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+#progressDetails {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+    display: none;
+} 

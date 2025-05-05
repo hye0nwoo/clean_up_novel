@@ -5,112 +5,62 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
     <title>소설 파일 중복 검사</title>
+    <link rel="stylesheet" href="src/styles.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .controls {
-            margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        button {
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .progress {
+        /* 기존 스타일 유지 */
+        
+        .progress-container {
             margin: 20px 0;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
             display: none;
         }
-        .progress-bar {
-            width: 100%;
+        
+        .progress-section {
+            margin-bottom: 15px;
+        }
+        
+        .progress-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .progress-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .progress {
             height: 20px;
-            background-color: #f0f0f0;
+            background: #ddd;
             border-radius: 10px;
             overflow: hidden;
+            position: relative;
         }
+        
         .progress-bar-fill {
             height: 100%;
-            background-color: #4CAF50;
-            width: 0%;
-            transition: width 0.3s;
+            width: 0;
+            transition: width 0.3s ease-in-out;
         }
-        .groups {
-            margin-top: 20px;
+        
+        .progress-details {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+            min-height: 1.2em;
         }
-        .group {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        
+        /* 각 단계별 진행바 색상 */
+        .search-progress .progress-bar-fill {
+            background: #2196F3;
         }
-        .group-header {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .file-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-        }
-        .file-item:last-child {
-            border-bottom: none;
-        }
-        .file-info {
-            flex-grow: 1;
-        }
-        .file-actions {
-            display: flex;
-            gap: 10px;
-        }
-        .status {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 4px;
-        }
-        .status.success {
-            background-color: #dff0d8;
-            color: #3c763d;
-        }
-        .status.error {
-            background-color: #f2dede;
-            color: #a94442;
+        
+        .group-progress .progress-bar-fill {
+            background: #FF9800;
         }
     </style>
 </head>
@@ -125,11 +75,22 @@
             <span id="selectedPath"></span>
         </div>
 
-        <div class="progress">
-            <div class="progress-bar">
-                <div class="progress-bar-fill"></div>
+        <div class="progress-container">
+            <div class="progress-section">
+                <div class="progress-label">파일 검색</div>
+                <div class="progress search-progress">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="progress-details"></div>
             </div>
-            <div id="progressText">처리 중...</div>
+            
+            <div class="progress-section">
+                <div class="progress-label">그룹화</div>
+                <div class="progress group-progress">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="progress-details"></div>
+            </div>
         </div>
 
         <div id="status" class="status" style="display: none;"></div>
@@ -137,128 +98,6 @@
         <div id="groups" class="groups"></div>
     </div>
 
-    <script>
-        const { ipcRenderer } = require('electron');
-        const path = require('path');
-        
-        let currentGroups = null;
-        
-        document.getElementById('selectDir').addEventListener('click', async () => {
-            try {
-                const dirPath = await ipcRenderer.invoke('select-directory');
-                if (!dirPath) return;
-                
-                document.getElementById('selectedPath').textContent = dirPath;
-                document.getElementById('status').style.display = 'none';
-                showProgress();
-                
-                // 파일 검색
-                const files = await ipcRenderer.invoke('find-files', dirPath);
-                if (files.length === 0) {
-                    showStatus('처리할 파일이 없습니다.', 'error');
-                    hideProgress();
-                    return;
-                }
-                
-                // 파일 그룹화
-                const groups = await ipcRenderer.invoke('group-files', files);
-                if (Object.keys(groups).length === 0) {
-                    showStatus('중복된 파일이 없습니다.', 'error');
-                    hideProgress();
-                    return;
-                }
-                
-                currentGroups = groups;
-                displayGroups(groups);
-                hideProgress();
-                
-            } catch (error) {
-                showStatus(`오류 발생: ${error.message}`, 'error');
-                hideProgress();
-            }
-        });
-        
-        function showProgress() {
-            document.querySelector('.progress').style.display = 'block';
-        }
-        
-        function hideProgress() {
-            document.querySelector('.progress').style.display = 'none';
-        }
-        
-        function showStatus(message, type) {
-            const status = document.getElementById('status');
-            status.textContent = message;
-            status.className = `status ${type}`;
-            status.style.display = 'block';
-        }
-        
-        function displayGroups(groups) {
-            const container = document.getElementById('groups');
-            container.innerHTML = '';
-            
-            Object.entries(groups).forEach(([key, files], groupIndex) => {
-                const group = document.createElement('div');
-                group.className = 'group';
-                
-                const header = document.createElement('div');
-                header.className = 'group-header';
-                header.textContent = `그룹 ${groupIndex + 1}`;
-                group.appendChild(header);
-                
-                const fileList = document.createElement('ul');
-                fileList.className = 'file-list';
-                
-                files.forEach((file, fileIndex) => {
-                    const item = document.createElement('li');
-                    item.className = 'file-item';
-                    
-                    const info = document.createElement('div');
-                    info.className = 'file-info';
-                    info.textContent = path.basename(file);
-                    
-                    const actions = document.createElement('div');
-                    actions.className = 'file-actions';
-                    
-                    const keepButton = document.createElement('button');
-                    keepButton.textContent = '이 파일 유지';
-                    keepButton.onclick = () => handleKeepFile(groupIndex, file, files);
-                    
-                    actions.appendChild(keepButton);
-                    item.appendChild(info);
-                    item.appendChild(actions);
-                    fileList.appendChild(item);
-                });
-                
-                group.appendChild(fileList);
-                container.appendChild(group);
-            });
-        }
-        
-        async function handleKeepFile(groupIndex, keepFile, files) {
-            try {
-                showProgress();
-                await ipcRenderer.invoke('move-duplicates', {
-                    files,
-                    keepFile,
-                    duplicateDir: 'duplicates'
-                });
-                
-                // 해당 그룹 제거
-                const groupDiv = document.querySelectorAll('.group')[groupIndex];
-                groupDiv.remove();
-                
-                showStatus('파일이 성공적으로 이동되었습니다.', 'success');
-                hideProgress();
-                
-            } catch (error) {
-                showStatus(`파일 이동 중 오류 발생: ${error.message}`, 'error');
-                hideProgress();
-            }
-        }
-
-        // 인코딩 설정
-        document.characterSet = 'UTF-8';
-    </script>
+    <script src="src/renderer.js"></script>
 </body>
 </html> 
