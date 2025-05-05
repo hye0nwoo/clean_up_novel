@@ -88,6 +88,24 @@ _VOLUME_PATTERNS = [
     ]
 ]
 
+# 시리즈 인식을 위한 패턴 추가
+_SERIES_PATTERNS = [
+    r'(.*?)[\s_-]*(\d+)권',  # 기본 숫자+권
+    r'(.*?)[\s_-]*(\d+)-\d+권',  # 1-1권 형태
+    r'(.*?)[\s_-]*[제권]\s*(\d+)',  # 제1권, 권1 형태
+    r'(.*?)[\s_-]*(상|중|하)편?',  # 상/중/하 표기
+    r'(.*?)[\s_-]*(first|second|third|fourth|fifth)',  # 영문 표기
+    r'(.*?)[\s_-]*vol\.?\s*(\d+)',  # Vol.1 형태
+    r'(.*?)[\s_-]*part\.?\s*(\d+)',  # Part.1 형태
+    r'(.*?)[\s_-]*\#(\d+)',  # #1 형태
+    r'(.*?)[\s_-]*(\d+)화',  # 1화 형태
+    r'(.*?)[\s_-]*(\d+)장',  # 1장 형태
+    r'(.*?)[\s_-]*(\d+)편',  # 1편 형태
+    r'(.*?)[\s_-]*시즌\s*(\d+)',  # 시즌1 형태
+    r'(.*?)[\s_-]*season\s*(\d+)',  # season1 형태
+    r'(.*?)[\s_-]*(\d+)(?:\.txt)?$'  # 파일명 끝의 숫자 (확장자 제외)
+]
+
 @lru_cache(maxsize=CACHE_SIZE)
 def calculate_file_hash(file_path: str, chunk_size: int = CHUNK_SIZE) -> str:
     """파일의 xxHash 해시값을 계산합니다."""
@@ -162,28 +180,17 @@ def normalize_series_name(title: str) -> str:
     normalized = re.sub(r'[\s\-_]+', '', title)
     # 괄호 내용 제거
     normalized = re.sub(r'[\[\(\{].*?[\]\)\}]', '', normalized)
+    # 시리즈 표시 제거
+    normalized = re.sub(r'시리즈|series', '', normalized, flags=re.IGNORECASE)
+    # 권/화/편 등 제거
+    normalized = re.sub(r'권|화|편|장|part|vol|volume', '', normalized, flags=re.IGNORECASE)
+    # 숫자 제거
+    normalized = re.sub(r'\d+', '', normalized)
     return normalized.lower()
 
 def extract_volume_info(filename: str) -> Optional[Tuple[str, str]]:
     """파일명에서 시리즈명과 권수 정보를 추출합니다."""
-    # 다양한 권수 표기 패턴
-    patterns = [
-        r'(.*?)[\s_-]*(\d+)권',  # 기본 숫자+권
-        r'(.*?)[\s_-]*(\d+)-\d+권',  # 1-1권 형태
-        r'(.*?)[\s_-]*[제권]\s*(\d+)',  # 제1권, 권1 형태
-        r'(.*?)[\s_-]*(상|중|하)편?',  # 상/중/하 표기
-        r'(.*?)[\s_-]*(first|second|third|fourth|fifth)',  # 영문 표기
-        r'(.*?)[\s_-]*vol\.?\s*(\d+)',  # Vol.1 형태
-        r'(.*?)[\s_-]*part\.?\s*(\d+)',  # Part.1 형태
-        r'(.*?)[\s_-]*\#(\d+)',  # #1 형태
-        r'(.*?)[\s_-]*(\d+)화',  # 1화 형태
-        r'(.*?)[\s_-]*(\d+)장',  # 1장 형태
-        r'(.*?)[\s_-]*(\d+)편',  # 1편 형태
-        r'(.*?)[\s_-]*시즌\s*(\d+)',  # 시즌1 형태
-        r'(.*?)[\s_-]*season\s*(\d+)',  # season1 형태
-    ]
-    
-    for pattern in patterns:
+    for pattern in _SERIES_PATTERNS:
         match = re.search(pattern, filename, re.IGNORECASE)
         if match:
             series_name = match.group(1).strip()
@@ -217,6 +224,20 @@ def get_volume_number(volume_info: str) -> Optional[int]:
         return english_map[volume_info.lower()]
     
     return None
+
+def is_sequential_volumes(volumes: Set[int]) -> bool:
+    """권수가 연속적인지 확인합니다."""
+    if len(volumes) < 2:
+        return False
+        
+    sorted_vols = sorted(volumes)
+    # 1권, 2권, 3권... 패턴
+    sequential = all(sorted_vols[i+1] - sorted_vols[i] == 1 
+                    for i in range(len(sorted_vols)-1))
+    # 1권, 10권, 11권... 패턴 (10단위 건너뛰기 허용)
+    decimal_sequential = all(sorted_vols[i+1] - sorted_vols[i] in (1, 9, 10) 
+                           for i in range(len(sorted_vols)-1))
+    return sequential or decimal_sequential
 
 def is_same_series(files: List[Path]) -> bool:
     """주어진 파일들이 같은 시리즈의 다른 권수인지 확인합니다."""
@@ -254,11 +275,7 @@ def is_same_series(files: List[Path]) -> bool:
     if len(series_info) == 1:
         volumes = next(iter(series_info.values()))
         if len(volumes) > 1 and len(volumes) == len(files):
-            # 권수가 연속되어 있는지 확인
-            sorted_volumes = sorted(volumes)
-            # 권수 간격이 1이거나 10인 경우 허용 (1권, 10권, 11권 등의 패턴)
-            gaps = [sorted_volumes[i+1] - sorted_volumes[i] for i in range(len(sorted_volumes)-1)]
-            return all(gap == 1 or gap == 10 for gap in gaps)
+            return is_sequential_volumes(volumes)
     
     return False
 
