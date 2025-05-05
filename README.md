@@ -65,8 +65,14 @@
 
 ### CLI 버전 (Python)
 1. Python 3.8 이상 설치
-2. 필요한 패키지 설치: `pip install -r requirements.txt`
-3. `python cleanup_novel.py [디렉토리 경로]` 실행
+2. cli_python 폴더로 이동: `cd cli_python`
+3. 필요한 패키지 설치: `pip install -r requirements.txt`
+4. 프로그램 실행: `python cleanup_novel.py`
+5. 화면의 안내에 따라 진행:
+   - 처리할 디렉토리 경로 입력 (엔터 입력시 현재 디렉토리)
+   - 유사도 임계값 선택 (1: 낮음, 2: 중간, 3: 높음)
+   - 발견된 중복 파일 확인
+   - 각 그룹별로 남길 파일 선택
 
 #### CLI 기능
 - 명령줄 인터페이스를 통한 간단한 조작
@@ -74,15 +80,6 @@
 - 진행 상황 실시간 표시
 - 처리 결과 요약 출력
 - 에러 발생 시 자세한 로그 제공
-
-#### CLI 옵션
-```bash
-python cleanup_novel.py [옵션] [디렉토리 경로]
-
-옵션:
-  -h, --help            도움말 표시
-  -r, --recursive       하위 폴더 모두 검사
-```
 
 ### GUI 버전 (JavaScript)
 1. Node.js 18.x 이상 설치

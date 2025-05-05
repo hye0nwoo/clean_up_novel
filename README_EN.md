@@ -65,8 +65,14 @@ A program that finds and organizes duplicate novel files (.txt).
 
 ### CLI Version (Python)
 1. Install Python 3.8 or higher
-2. Install required packages: `pip install -r requirements.txt`
-3. Run `python cleanup_novel.py [directory path]`
+2. Change to cli_python directory: `cd cli_python`
+3. Install required packages: `pip install -r requirements.txt`
+4. Run the program: `python cleanup_novel.py`
+5. Follow the on-screen instructions:
+   - Enter directory path to process (press Enter for current directory)
+   - Select similarity threshold (1: Low, 2: Medium, 3: High)
+   - Review found duplicate files
+   - Choose which file to keep for each group
 
 #### CLI Features
 - Simple operation through command-line interface
@@ -74,15 +80,6 @@ A program that finds and organizes duplicate novel files (.txt).
 - Real-time progress display
 - Processing result summary
 - Detailed logs for error cases
-
-#### CLI Options
-```bash
-python cleanup_novel.py [options] [directory path]
-
-Options:
-  -h, --help            Show help message
-  -r, --recursive       Check all subdirectories
-```
 
 ### GUI Version (JavaScript)
 1. Install Node.js 18.x or higher
