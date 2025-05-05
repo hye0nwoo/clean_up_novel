@@ -214,16 +214,16 @@ async function processFile(filePath) {
             return null;
         }
 
-        // 파일 확장자 확인
+        // 파일 확장자 확인 - 대소문자 구분 없이 처리
         const ext = path.extname(filePath).toLowerCase();
-        if (ext !== '.txt') {
-            // console.log('[디버그] txt 파일이 아님:', filePath);
+        if (ext !== '.txt' && ext !== '.epub') {
+            // console.log('[디버그] txt 또는 epub 파일이 아님:', filePath);
             return null;
         }
 
         // 50MB 이상 파일은 건너뛰기
         if (stats.size > 50 * 1024 * 1024) {
-            // console.log(`[스킵] 대용량 파일 (${filePath}): ${(stats.size / (1024 * 1024)).toFixed(2)}MB`);
+            console.log(`[스킵] 대용량 파일 (${path.basename(filePath)}): ${(stats.size / (1024 * 1024)).toFixed(2)}MB - txt/epub 파일 크기 제한 초과`);
             return null;
         }
 
@@ -391,7 +391,7 @@ const SERIES_PATTERNS = [
     /(.*?)[\s_-]*(\d+)편/,  // 1편 형태
     /(.*?)[\s_-]*시즌\s*(\d+)/,  // 시즌1 형태
     /(.*?)[\s_-]*season\s*(\d+)/i,  // season1 형태
-    /(.*?)[\s_-]*(\d+)(?:\.txt)?$/  // 파일명 끝의 숫자 (확장자 제외)
+    /(.*?)[\s_-]*(\d+)(?:\.(txt|epub))?$/i  // 파일명 끝의 숫자 (확장자 포함)
 ];
 
 // 시리즈명 정규화
@@ -691,20 +691,30 @@ async function findAllFiles(rootDir, progressCallback) {
     console.log('[디버그] 파일 검색 시작. 루트 디렉토리:', rootDir);
     
     try {
-        // 파일 목록 가져오기
-        const pattern = path.join(rootDir, '**', '*.txt');
-        console.log('[디버그] 검색 패턴:', pattern);
+        // 파일 목록 가져오기 - 대소문자 구분 없이 txt와 epub 파일 검색
+        const patterns = [
+            path.join(rootDir, '**', '*.txt'),
+            path.join(rootDir, '**', '*.TXT'),
+            path.join(rootDir, '**', '*.epub'),
+            path.join(rootDir, '**', '*.EPUB')
+        ];
+        console.log('[디버그] 검색 패턴:', patterns);
         
-        const files = await new Promise((resolve, reject) => {
-            glob(pattern, { nodir: true }, (err, matches) => {
-                if (err) {
-                    console.error('[오류] 파일 검색 중 오류:', err);
-                    reject(err);
-                    return;
-                }
-                resolve(matches);
+        const allFiles = await Promise.all(patterns.map(pattern => {
+            return new Promise((resolve, reject) => {
+                glob(pattern, { nodir: true, nocase: true }, (err, matches) => {
+                    if (err) {
+                        console.error('[오류] 파일 검색 중 오류:', err);
+                        reject(err);
+                        return;
+                    }
+                    resolve(matches);
+                });
             });
-        });
+        }));
+
+        // 중복 제거를 위해 Set 사용
+        const files = [...new Set(allFiles.flat())];
 
         if (progressCallback) {
             progressCallback({
@@ -873,7 +883,7 @@ async function groupSimilarFiles(files, progressCallback) {
 
 // 유사한 그룹 출력
 function printSimilarGroups(groups) {
-    console.log(`\n총 ${Object.keys(groups).length}개의 중복 의심 파일 그룹 (txt 파일만):`);
+    console.log(`\n총 ${Object.keys(groups).length}개의 중복 의심 파일 그룹:`);
     
     let groupNum = 1;
     for (const [groupName, files] of Object.entries(groups)) {
@@ -881,7 +891,8 @@ function printSimilarGroups(groups) {
         for (const file of files) {
             const stats = fs.statSync(file);
             const sizeMB = (stats.size / (1024 * 1024)).toFixed(2);
-            console.log(`  ${path.basename(file)} (${sizeMB}MB)`);
+            const ext = path.extname(file).toLowerCase().slice(1);
+            console.log(`  ${path.basename(file)} (${sizeMB}MB) [${ext}]`);
         }
         groupNum++;
     }

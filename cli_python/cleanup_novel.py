@@ -103,7 +103,7 @@ _SERIES_PATTERNS = [
     r'(.*?)[\s_-]*(\d+)편',  # 1편 형태
     r'(.*?)[\s_-]*시즌\s*(\d+)',  # 시즌1 형태
     r'(.*?)[\s_-]*season\s*(\d+)',  # season1 형태
-    r'(.*?)[\s_-]*(\d+)(?:\.txt)?$'  # 파일명 끝의 숫자 (확장자 제외)
+    r'(.*?)[\s_-]*(\d+)(?:\.(txt|epub))?$'  # 파일명 끝의 숫자 (확장자 포함)
 ]
 
 @lru_cache(maxsize=CACHE_SIZE)
@@ -408,27 +408,16 @@ def process_file_batch(files: List[Path], batch_size: int = BATCH_SIZE) -> List[
     return results
 
 def find_all_files(root_dir: str) -> List[Tuple[Path, str, str, int]]:
-    """모든 .txt 파일을 찾아서 병렬로 처리합니다."""
+    """모든 .txt와 .epub 파일을 찾아서 병렬로 처리합니다."""
     print("파일 검색 중...")
     
     def scan_directory(path: Path) -> Iterator[Path]:
-        try:
-            for entry in os.scandir(path):
-                try:
-                    if entry.is_file():
-                        if entry.name.lower().endswith('.txt'):
-                            # 파일 크기 확인
-                            file_size = entry.stat().st_size
-                            if file_size <= MAX_FILE_SIZE:
-                                yield Path(entry.path)
-                            else:
-                                print(f"경고: {entry.name}의 크기가 50MB를 초과합니다. 건너뜁니다.")
-                    elif entry.is_dir():
-                        yield from scan_directory(Path(entry.path))
-                except Exception:
-                    continue
-        except Exception:
-            return
+        """디렉토리를 재귀적으로 스캔하여 .txt와 .epub 파일을 찾습니다."""
+        for entry in path.rglob("*"):
+            if entry.is_file():
+                ext = entry.suffix.lower()
+                if ext in ('.txt', '.epub'):
+                    yield entry
     
     files = list(scan_directory(Path(root_dir)))
     if not files:
@@ -558,7 +547,8 @@ def print_similar_groups(groups: Dict[str, List[Path]]):
         print(f"{'-'*30}")
         for file in files:
             size = format_file_size(file.stat().st_size)
-            print(f"  • {file.name} ({size})")
+            ext = file.suffix.lower()
+            print(f"  • {file.name} ({size}) [{ext[1:]}]")
 
 def handle_duplicates(groups: Dict[str, List[Path]], duplicate_dir: str = 'duplicates'):
     """중복된 파일들을 처리합니다."""
