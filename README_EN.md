@@ -8,7 +8,33 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-A program that finds and organizes duplicate novel files (.txt).
+A program that finds and organizes duplicate novel files (.txt, .epub) in your collection.
+Similar to the file name organizer but specialized for managing novel files.
+
+## Features
+
+| Feature | CLI | GUI | Notes |
+|---|:---:|:---:|---|
+| **File Processing** |
+| txt File Processing | ✅ | ✅ | |
+| epub File Processing | ✅ | ✅ | Implemented in v1.0.1 |
+| Duplicate File Moving | ✅ | ✅ | |
+| Subfolder Scanning | ✅ | ❌ | GUI: In Development |
+
+| **Filename Normalization** |
+| Number/Complete Mark Removal | ✅ | ✅ | |
+| Case Insensitive Processing | ✅ | ✅ | |
+| Initial Grouping | ✅ | ❌ | GUI: In Development |
+| Hash-based Duplicate Check | ✅ | ✅ | Using Optimized xxHash |
+| Volume Pattern Recognition | ✅ | ✅ | Enhanced Pattern Detection |
+| Series Duplicate Exclusion | ✅ | ✅ | Improved Normalization Logic |
+
+| **Performance Optimization** |
+| Multi-thread Processing | ✅ | ❌ | GUI: Under Review |
+
+| **User Experience** |
+| Progress Display | ✅ | ✅ | |
+| GUI Interface | ❌ | ✅ | |
 
 ## Implementation Status
 
@@ -16,7 +42,7 @@ A program that finds and organizes duplicate novel files (.txt).
 |---------|-------------|------------------|------|
 | **File Processing** |
 | txt File Processing | ✅ | ✅ | |
-| epub File Processing | ❌ | ❌ | Planned |
+| epub File Processing | ✅ | ✅ | |
 | Move Duplicate Files | ✅ | ✅ | |
 | Subdirectory Scan | ✅ | ❌ | GUI: In Progress |
 | **Filename Normalization** |
