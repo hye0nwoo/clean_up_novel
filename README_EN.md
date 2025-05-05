@@ -28,11 +28,11 @@ A program that finds and organizes duplicate novel files (.txt).
 | Initial Grouping | ✅ | ❌ | GUI: In Progress |
 | Multi-threading | ✅ | ❌ | GUI: Under Review |
 | **Series Handling** |
-| Volume Pattern Recognition | ✅ | ✅ | |
-| Series Duplicate Exclusion | ✅ | ✅ | |
+| Volume Pattern Recognition | ✅ | ✅ | Enhanced Pattern Detection |
+| Series Duplicate Exclusion | ✅ | ✅ | Improved Normalization |
 | **User Experience** |
 | Progress Display | ✅ | ✅ | |
-| Result Report | ✅ | ❌ | GUI: In Progress |
+| Result Report | ✅ | ✅ | |
 | Cancel/Rollback | ❌ | ❌ | Planned |
 | Settings Customization | ❌ | ❌ | Planned |
 
@@ -63,6 +63,11 @@ A program that finds and organizes duplicate novel files (.txt).
 
 ## Usage
 
+### Using Executable Files (Recommended)
+Download and run the desired version from the releases folder:
+- `소설 파일 중복 검사_CLI 1.0.0.exe`: Command-line interface version
+- `소설 파일 중복 검사_GUI 1.0.0.exe`: Graphical interface version
+
 ### CLI Version (Python)
 1. Install Python 3.8 or higher
 2. Change to cli_python directory: `cd cli_python`
@@ -83,13 +88,16 @@ A program that finds and organizes duplicate novel files (.txt).
 
 ### GUI Version (JavaScript)
 1. Install Node.js 18.x or higher
-2. Run `npm install`
-3. Start the program with `npm start`
+2. Change to gui_js directory: `cd gui_js`
+3. Run `npm install`
+4. Start the program with `npm start`
 
 #### GUI Features
 - Folder selection and file processing
 - Basic duplicate file detection and moving
 - Processing progress display
+- Automatic series detection and handling
+- Processing result visualization
 
 ## Precautions
 
