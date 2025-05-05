@@ -414,7 +414,7 @@ def find_all_files(root_dir: str) -> List[Tuple[Path, str, str, int]]:
     def scan_directory(path: Path) -> Iterator[Path]:
         """디렉토리를 재귀적으로 스캔하여 .txt와 .epub 파일을 찾습니다."""
         for entry in path.rglob("*"):
-            if entry.is_file():
+                    if entry.is_file():
                 ext = entry.suffix.lower()
                 if ext in ('.txt', '.epub'):
                     yield entry

@@ -88,8 +88,8 @@ Similar to the file name organizer but specialized for managing novel files.
 
 ### For Users
 Download and run your preferred version from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
-- [`소설 파일 중복 검사_GUI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_GUI.1.0.0.exe): User-friendly graphical interface version
-- [`소설 파일 중복 검사_CLI 1.0.0.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.0/소설.파일.중복.검사_CLI.1.0.0.exe): Lightweight command-line version
+- [`소설 파일 중복 검사_GUI 1.0.1.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.1/소설.파일.중복.검사_GUI.1.0.1.exe): User-friendly graphical interface version
+- [`소설 파일 중복 검사_CLI 1.0.1.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/v1.0.1/소설.파일.중복.검사_CLI.1.0.1.exe): Lightweight command-line version
 
 ### For Developers
 If you want to run the source code:

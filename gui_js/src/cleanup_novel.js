@@ -173,7 +173,7 @@ class WorkerPool {
             this.initialize();
         }
 
-        return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
             this.queue.push({ filePath, chunkSize, resolve, reject });
             this.processQueue();
         });
@@ -701,13 +701,13 @@ async function findAllFiles(rootDir, progressCallback) {
         console.log('[디버그] 검색 패턴:', patterns);
         
         const allFiles = await Promise.all(patterns.map(pattern => {
-            return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
                 glob(pattern, { nodir: true, nocase: true }, (err, matches) => {
-                    if (err) {
+            if (err) {
                         console.error('[오류] 파일 검색 중 오류:', err);
-                        reject(err);
-                        return;
-                    }
+                reject(err);
+                return;
+            }
                     resolve(matches);
                 });
             });
@@ -726,7 +726,7 @@ async function findAllFiles(rootDir, progressCallback) {
         }
 
         // 파일 정보 수집
-        const fileInfos = [];
+            const fileInfos = [];
         let processedCount = 0;
 
         for (const file of files) {
