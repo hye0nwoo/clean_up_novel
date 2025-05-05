@@ -75,6 +75,7 @@ htmlcov/
 
 # Graphviz
 diagrams/
+code_visualizer.py
 *.gv
 *.gv.pdf
 *.gv.png
