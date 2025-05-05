@@ -415,9 +415,9 @@ def find_all_files(root_dir: str) -> List[Tuple[Path, str, str, int]]:
         """디렉토리를 재귀적으로 스캔하여 .txt와 .epub 파일을 찾습니다."""
         for entry in path.rglob("*"):
                     if entry.is_file():
-                ext = entry.suffix.lower()
-                if ext in ('.txt', '.epub'):
-                    yield entry
+                        ext = entry.suffix.lower()
+                    if ext in ('.txt', '.epub'):
+                        yield entry
     
     files = list(scan_directory(Path(root_dir)))
     if not files:
@@ -662,22 +662,22 @@ def main():
         # 유사도 임계값 선택
         print(f"\n{'='*30}")
         print("유사도 임계값 선택")
-        print("1: 낮음 (0.8) - 더 많은 파일을 유사하다고 판단")
-        print("2: 중간 (0.85) - 기본값")
-        print("3: 높음 (0.9) - 매우 유사한 파일만 선택")
+        print("1: 낮음 (0.75) - 더 많은 파일을 유사하다고 판단")
+        print("2: 중간 (0.8) - 기본값")
+        print("3: 높음 (0.85) - 매우 유사한 파일만 선택")
         print(f"{'='*30}")
         
         while True:
             similarity_choice = get_user_input("\n선택 (1/2/3, 엔터: 기본값): ")
             if not similarity_choice:  # 기본값
-                similarity_threshold = 0.85
-                print("기본값(0.85)을 사용합니다.")
+                similarity_threshold = 0.8
+                print("기본값(0.8)을 사용합니다.")
                 break
             elif similarity_choice in ['1', '2', '3']:
                 similarity_threshold = {
-                    '1': 0.8,
-                    '2': 0.85,
-                    '3': 0.9
+                    '1': 0.75,
+                    '2': 0.8,
+                    '3': 0.85
                 }[similarity_choice]
                 break
             else:
