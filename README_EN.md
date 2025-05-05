@@ -55,49 +55,27 @@ A program that finds and organizes duplicate novel files (.txt).
 
 ## System Requirements
 
-- OS: Windows 10 or higher
-- Python 3.8+ (CLI version)
-- Node.js 18.x+ (GUI version)
-- Memory: 4GB or more recommended
+- Windows 10 or higher
 - Storage: At least 2x the size of files to be processed
 
 ## Usage
 
-### Using Executable Files (Recommended)
-Download and run the desired version from the releases folder:
-- `소설 파일 중복 검사_CLI 1.0.0.exe`: Command-line interface version
-- `소설 파일 중복 검사_GUI 1.0.0.exe`: Graphical interface version
+### For Users
+Download and run your preferred version from the releases folder:
+- `소설 파일 중복 검사_GUI 1.0.0.exe`: User-friendly graphical interface version
+- `소설 파일 중복 검사_CLI 1.0.0.exe`: Lightweight command-line version
 
-### CLI Version (Python)
-1. Install Python 3.8 or higher
-2. Change to cli_python directory: `cd cli_python`
-3. Install required packages: `pip install -r requirements.txt`
-4. Run the program: `python cleanup_novel.py`
-5. Follow the on-screen instructions:
-   - Enter directory path to process (press Enter for current directory)
-   - Select similarity threshold (1: Low, 2: Medium, 3: High)
-   - Review found duplicate files
-   - Choose which file to keep for each group
+### For Developers
+If you want to run the source code:
 
-#### CLI Features
-- Simple operation through command-line interface
-- Fast execution with multi-thread/multi-process processing
-- Real-time progress display
-- Processing result summary
-- Detailed logs for error cases
+#### CLI Version (Python)
+- Requires Python 3.8+
+- In `cli_python` folder, run `pip install -r requirements.txt`
+- Start with `python cleanup_novel.py`
 
-### GUI Version (JavaScript)
-1. Install Node.js 18.x or higher
-2. Change to gui_js directory: `cd gui_js`
-3. Run `npm install`
-4. Start the program with `npm start`
-
-#### GUI Features
-- Folder selection and file processing
-- Basic duplicate file detection and moving
-- Processing progress display
-- Automatic series detection and handling
-- Processing result visualization
+#### GUI Version (JavaScript)
+- Requires Node.js 18.x+
+- In `gui_js` folder, run `npm install && npm start`
 
 ## Precautions
 

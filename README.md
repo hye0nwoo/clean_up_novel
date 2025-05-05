@@ -56,49 +56,27 @@
 
 ## 시스템 요구사항
 
-- 운영체제: Windows 10 이상
-- Python 3.8 이상 (CLI 버전)
-- Node.js 18.x 이상 (GUI 버전)
-- 메모리: 4GB 이상 권장
+- Windows 10 이상
 - 저장공간: 처리할 파일 크기의 2배 이상
 
 ## 사용 방법
 
-### 실행 파일 사용 (권장)
-releases 폴더에서 원하는 버전의 실행 파일을 다운로드하여 실행합니다:
-- `소설 파일 중복 검사_CLI 1.0.0.exe`: 명령줄 인터페이스 버전
-- `소설 파일 중복 검사_GUI 1.0.0.exe`: 그래픽 인터페이스 버전
+### 일반 사용자
+releases 폴더에서 원하는 버전을 다운로드하여 실행하세요:
+- `소설 파일 중복 검사_GUI 1.0.0.exe`: 편리한 그래픽 인터페이스 버전
+- `소설 파일 중복 검사_CLI 1.0.0.exe`: 가벼운 명령줄 버전
 
-### CLI 버전 (Python)
-1. Python 3.8 이상 설치
-2. cli_python 폴더로 이동: `cd cli_python`
-3. 필요한 패키지 설치: `pip install -r requirements.txt`
-4. 프로그램 실행: `python cleanup_novel.py`
-5. 화면의 안내에 따라 진행:
-   - 처리할 디렉토리 경로 입력 (엔터 입력시 현재 디렉토리)
-   - 유사도 임계값 선택 (1: 낮음, 2: 중간, 3: 높음)
-   - 발견된 중복 파일 확인
-   - 각 그룹별로 남길 파일 선택
+### 개발자를 위한 정보
+소스 코드를 직접 실행하고 싶은 경우:
 
-#### CLI 기능
-- 명령줄 인터페이스를 통한 간단한 조작
-- 멀티스레드/멀티프로세스 처리로 빠른 실행
-- 진행 상황 실시간 표시
-- 처리 결과 요약 출력
-- 에러 발생 시 자세한 로그 제공
+#### CLI 버전 (Python)
+- Python 3.8 이상 필요
+- `cli_python` 폴더에서 `pip install -r requirements.txt` 실행
+- `python cleanup_novel.py` 로 시작
 
-### GUI 버전 (JavaScript)
-1. Node.js 18.x 이상 설치
-2. gui_js 폴더로 이동: `cd gui_js`
-3. `npm install` 실행
-4. `npm start` 로 프로그램 실행
-
-#### GUI 기능
-- 폴더 선택 및 파일 처리
-- 기본적인 중복 파일 검사 및 이동
-- 처리 진행 상황 표시
-- 시리즈물 자동 인식 및 처리
-- 처리 결과 시각화
+#### GUI 버전 (JavaScript)
+- Node.js 18.x 이상 필요
+- `gui_js` 폴더에서 `npm install && npm start` 실행
 
 ## 주의사항
 
