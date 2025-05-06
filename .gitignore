@@ -80,3 +80,9 @@ code_visualizer.py
 *.gv.pdf
 *.gv.png
 *.dot 
+
+# Documentation
+**/CODE_DOCUMENTATION.md
+**/DOCUMENTATION.md
+docs/
+documentation/ 
