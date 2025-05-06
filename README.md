@@ -8,7 +8,7 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 프로그램입니다.
+소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 프로그램입니다.  
 파일이름정리프로그램과 비슷하지만 소설관리쪽으로 특화된 프로그램입니다.  
 ex)  
 [현판] 현판소설입니다 1-120.txt  
