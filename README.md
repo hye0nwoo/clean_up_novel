@@ -71,6 +71,7 @@ ex)
 [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) 페이지에서 원하는 버전을 다운로드하여 실행하세요:
 - [`소설 파일 중복 검사_CLI 1.0.1.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.1/소설.파일.중복.검사_CLI.1.0.1.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
 
+※ 알 수 없는 게시자 경고가 뜬다면 추가정보 --> 실행 버튼을 누르면 됩니다.
 ※ GUI 버전은 현재 수정 작업 중입니다.
 
 ### 개발자를 위한 정보
