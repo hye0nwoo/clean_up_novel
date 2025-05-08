@@ -659,29 +659,8 @@ def main():
             print(f"\n❌ 오류: 디렉토리가 존재하지 않습니다: {target_dir}")
             return
 
-        # 유사도 임계값 선택
-        print(f"\n{'='*30}")
-        print("유사도 임계값 선택")
-        print("1: 낮음 (0.75) - 더 많은 파일을 유사하다고 판단")
-        print("2: 중간 (0.8) - 기본값")
-        print("3: 높음 (0.85) - 매우 유사한 파일만 선택")
-        print(f"{'='*30}")
-        
-        while True:
-            similarity_choice = get_user_input("\n선택 (1/2/3, 엔터: 기본값): ")
-            if not similarity_choice:  # 기본값
-                similarity_threshold = 0.8
-                print("기본값(0.8)을 사용합니다.")
-                break
-            elif similarity_choice in ['1', '2', '3']:
-                similarity_threshold = {
-                    '1': 0.75,
-                    '2': 0.8,
-                    '3': 0.85
-                }[similarity_choice]
-                break
-            else:
-                print("\n❌ 잘못된 선택입니다. 1, 2, 3 중에서 선택하세요.")
+        # 유사도 임계값 설정 (기본값 0.75)
+        similarity_threshold = 0.75
 
         # 파일 찾기
         print("\n파일 검색 중...")
