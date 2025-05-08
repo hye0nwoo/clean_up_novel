@@ -30,6 +30,9 @@ def setup_encoding():
     except Exception:
         pass
 
+# 버전 정보
+VERSION = "1.0.2"
+
 # 인코딩 설정 시도
 setup_encoding()
 

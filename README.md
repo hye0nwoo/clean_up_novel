@@ -7,6 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.2-blue)](README.md)
 
 소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 프로그램입니다.  
 파일이름정리프로그램과 비슷하지만 소설관리쪽으로 특화된 프로그램입니다.  
@@ -70,7 +71,7 @@ ex)
 
 ### 일반 사용자
 [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) 페이지에서 원하는 버전을 다운로드하여 실행하세요:
-- [`소설 파일 중복 검사_CLI 1.0.1.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.1/소설.파일.중복.검사_CLI.1.0.1.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
+- [`소설 파일 중복 검사_CLI 1.0.2.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.2/소설.파일.중복.검사_CLI.1.0.2.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
 
 ※ 알 수 없는 게시자 경고가 뜬다면 추가정보 --> 실행 버튼을 누르면 됩니다.
 ※ GUI 버전은 현재 수정 작업 중입니다.
