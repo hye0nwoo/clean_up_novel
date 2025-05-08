@@ -10,6 +10,8 @@
 
 A program that finds and organizes duplicate novel files (.txt, .epub) in your collection.
 Similar to the file name organizer but specialized for managing novel files.
+Files with similar names are grouped together, allowing you to keep one file and move the rest to a duplicates folder.
+(Similarity threshold: 0.75 - detects more files as similar)
 
 ## Features
 
