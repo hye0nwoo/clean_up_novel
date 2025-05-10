@@ -58,9 +58,6 @@ desktop.ini
 # Logs
 *.log
 logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Test coverage
 coverage/
@@ -70,16 +67,6 @@ htmlcov/
 # Cache
 .cache/
 .pytest_cache/
-.npm
-.eslintcache 
-
-# Graphviz
-diagrams/
-code_visualizer.py
-*.gv
-*.gv.pdf
-*.gv.png
-*.dot 
 
 # Documentation
 **/CODE_DOCUMENTATION.md

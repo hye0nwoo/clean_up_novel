@@ -1,111 +1,51 @@
-# Novel File Organizer
+# Novel File Organizer (CLI)
 
 [![한국어](https://img.shields.io/badge/언어-한국어-blue.svg)](README.md)
 [![English](https://img.shields.io/badge/Language-English-blue.svg)](README_EN.md)
 
 [![Status](https://img.shields.io/badge/status-completed-green)](README_EN.md)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.2-blue)](README_EN.md)
 
-A program that finds and organizes duplicate novel files (.txt, .epub) in your collection.
+A command-line program that finds and organizes duplicate novel files (.txt, .epub) in your collection.
 Similar to the file name organizer but specialized for managing novel files.
 Files with similar names are grouped together, allowing you to keep one file and move the rest to a duplicates folder.
 (Similarity threshold: 0.75 - detects more files as similar)
 
-## Features
+## Key Features
 
-| Feature | CLI | GUI | Notes |
-|---|:---:|:---:|---|
-| **File Processing** |
-| txt File Processing | ✅ | ✅ | |
-| epub File Processing | ✅ | ✅ | Implemented in v1.0.1 |
-| Duplicate File Moving | ✅ | ✅ | |
-| Subfolder Scanning | ✅ | ❌ | GUI: In Development |
-
-| **Filename Normalization** |
-| Number/Complete Mark Removal | ✅ | ✅ | |
-| Case Insensitive Processing | ✅ | ✅ | |
-| Initial Grouping | ✅ | ❌ | GUI: In Development |
-| Hash-based Duplicate Check | ✅ | ✅ | Using Optimized xxHash |
-| Volume Pattern Recognition | ✅ | ✅ | Enhanced Pattern Detection |
-| Series Duplicate Exclusion | ✅ | ✅ | Improved Normalization Logic |
-
-| **Performance Optimization** |
-| Multi-thread Processing | ✅ | ❌ | GUI: Under Review |
-
-| **User Experience** |
-| Progress Display | ✅ | ✅ | |
-| GUI Interface | ❌ | ✅ | |
-
-## Implementation Status
-
-| Feature | CLI (Python) | GUI (JavaScript) | Note |
-|---------|-------------|------------------|------|
-| **File Processing** |
-| txt File Processing | ✅ | ✅ | |
-| epub File Processing | ✅ | ✅ | |
-| Move Duplicate Files | ✅ | ✅ | |
-| Subdirectory Scan | ✅ | ❌ | GUI: In Progress |
-| **Filename Normalization** |
-| Remove Metadata Tags | ✅ | ✅ | [xxx], (xxx), etc. |
-| Unify Separators | ✅ | ✅ | _, -, + → space |
-| Remove Numbers/Completion Marks | ✅ | ✅ | |
-| Case Insensitive | ✅ | ✅ | |
-| **Performance Optimization** |
-| Initial Grouping | ✅ | ❌ | GUI: In Progress |
-| Multi-threading | ✅ | ❌ | GUI: Under Review |
-| **Series Handling** |
-| Volume Pattern Recognition | ✅ | ✅ | Enhanced Pattern Detection |
-| Series Duplicate Exclusion | ✅ | ✅ | Improved Normalization |
-| **User Experience** |
-| Progress Display | ✅ | ✅ | |
-| Result Report | ✅ | ✅ | |
-| Cancel/Rollback | ❌ | ❌ | Planned |
-| Settings Customization | ❌ | ❌ | Planned |
-
-## Future Improvements
-
-### Quality Improvements
-- ⏳ Add unit tests
-- ⏳ Enhance logging system
-- ⏳ Strengthen error handling
-
-### User Experience
-- ⏳ Progress bar for operations
-- ⏳ Detailed processing result reports
-- ⏳ Operation cancel/rollback functionality
-
-### Additional Features
-- ⏳ Customization through configuration files
-- ⏳ Content-based similarity check (optional)
-- ⏳ Automatic backup functionality
+- txt and epub file processing
+- Duplicate file detection and moving
+- Subfolder scanning
+- Filename normalization (metadata tag removal, separator unification, etc.)
+- Hash-based duplicate checking
+- Volume pattern recognition
+- Series duplicate exclusion
+- Multi-thread processing
+- Progress display
+- Processing result reports
 
 ## System Requirements
 
 - Windows 10 or higher
+- Python 3.8 or higher
 - Storage: At least 2x the size of files to be processed
 
 ## Usage
 
 ### For Users
-Download and run your preferred version from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
+Download and run from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
 - [`소설 파일 중복 검사_CLI 1.0.2.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.2/소설.파일.중복.검사_CLI.1.0.2.exe): Lightweight command-line version (Portable version, no installation required)
 
-※ GUI version is currently under maintenance.
+※ If you see an "Unknown Publisher" warning, click "More Info" and then "Run anyway".
 
 ### For Developers
-If you want to run the source code:
+To run the source code:
 
-#### CLI Version (Python)
-- Requires Python 3.8+
-- In `cli_python` folder, run `pip install -r requirements.txt`
-- Start with `python cleanup_novel.py`
-
-#### GUI Version (JavaScript)
-- Requires Node.js 18.x+
-- In `gui_js` folder, run `npm install && npm start`
+1. Install Python 3.8 or higher
+2. Run `pip install -r requirements.txt`
+3. Start with `python cleanup_novel.py`
 
 ## Precautions
 

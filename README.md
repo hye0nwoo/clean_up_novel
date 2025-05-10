@@ -1,15 +1,14 @@
-# 소설 파일 정리 프로그램
+# 소설 파일 정리 프로그램 (CLI)
 
 [![한국어](https://img.shields.io/badge/언어-한국어-blue.svg)](README.md)
 [![English](https://img.shields.io/badge/Language-English-blue.svg)](README_EN.md)
 
 [![Status](https://img.shields.io/badge/상태-개발완료-green)](README.md)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.2-blue)](README.md)
 
-소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 프로그램입니다.  
+소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 CLI 프로그램입니다.  
 파일이름정리프로그램과 비슷하지만 소설관리쪽으로 특화된 프로그램입니다.  
 ex)  
 [현판] 현판소설입니다 1-120.txt  
@@ -18,53 +17,23 @@ ex)
 같은 파일들이 있을 경우 위 3개파일은 하나의 그룹으로 묶여 사용자가 원하는 파일 하나만 남기고 나머지 중복 파일들은 duplicates 폴더로 이동시킵니다.  
 (유사도 임계값: 0.75 - 더 많은 파일을 유사하다고 판단)
 
-## 구현 현황
+## 주요 기능
 
-| 기능 | CLI (Python) | GUI (JavaScript) | 비고 |
-|------|-------------|-----------------|------|
-| **파일 처리** |
-| txt 파일 처리 | ✅ | ✅ | |
-| epub 파일 처리 | ✅ | ✅ | v1.0.1에서 구현 완료 |
-| 중복 파일 이동 | ✅ | ✅ | |
-| 하위 폴더 검사 | ✅ | ❌ | GUI: 개발 중 |
-| **파일명 정규화** |
-| 메타데이터 태그 제거 | ✅ | ✅ | [xxx], (xxx) 등 |
-| 구분자 통일 | ✅ | ✅ | _, -, + → 공백 |
-| 숫자/완결 표시 제거 | ✅ | ✅ | |
-| 대소문자 구분 제거 | ✅ | ✅ | |
-| 초기 그룹화 | ✅ | ❌ | GUI: 개발 중 |
-| 해시 기반 중복 검사 | ✅ | ✅ | 최적화된 xxHash 사용 |
-| 권수 패턴 인식 | ✅ | ✅ | 개선된 패턴 인식 |
-| 시리즈 중복 제외 | ✅ | ✅ | 정규화 로직 강화 |
-| **성능 최적화** |
-| 멀티스레드 처리 | ✅ | ❌ | GUI: 검토 중 |
-| **시리즈물 처리** |
-| **사용자 경험** |
-| 진행 상황 표시 | ✅ | ✅ | |
-| 처리 결과 리포트 | ✅ | ✅ | |
-| 작업 취소/롤백 | ❌ | ❌ | 추후 구현 예정 |
-| 설정 커스터마이징 | ❌ | ❌ | 추후 구현 예정 |
-
-## 향후 개선 계획
-
-### 품질 개선
-- ⏳ 단위 테스트 추가
-- ⏳ 로깅 시스템 개선
-- ⏳ 에러 처리 강화
-
-### 사용자 경험
-- ⏳ 진행 상황 프로그레스 바
-- ⏳ 처리 결과 상세 리포트 생성
-- ⏳ 작업 취소/롤백 기능
-
-### 추가 기능
-- ⏳ 설정 파일을 통한 커스터마이징
-- ⏳ 파일 내용 기반 유사도 검사 (선택적)
-- ⏳ 자동 백업 기능
+- txt 및 epub 파일 처리
+- 중복 파일 검출 및 이동
+- 하위 폴더 검사
+- 파일명 정규화 (메타데이터 태그 제거, 구분자 통일 등)
+- 해시 기반 중복 검사
+- 권수 패턴 인식
+- 시리즈 중복 제외
+- 멀티스레드 처리
+- 진행 상황 표시
+- 처리 결과 리포트
 
 ## 시스템 요구사항
 
 - Windows 10 이상
+- Python 3.8 이상
 - 저장공간: 처리할 파일 크기의 2배 이상
 
 ## 사용 방법
@@ -74,19 +43,13 @@ ex)
 - [`소설 파일 중복 검사_CLI 1.0.2.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.2/소설.파일.중복.검사_CLI.1.0.2.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
 
 ※ 알 수 없는 게시자 경고가 뜬다면 추가정보 --> 실행 버튼을 누르면 됩니다.
-※ GUI 버전은 현재 수정 작업 중입니다.
 
 ### 개발자를 위한 정보
 소스 코드를 직접 실행하고 싶은 경우:
 
-#### CLI 버전 (Python)
-- Python 3.8 이상 필요
-- `cli_python` 폴더에서 `pip install -r requirements.txt` 실행
-- `python cleanup_novel.py` 로 시작
-
-#### GUI 버전 (JavaScript)
-- Node.js 18.x 이상 필요
-- `gui_js` 폴더에서 `npm install && npm start` 실행
+1. Python 3.8 이상 설치
+2. `pip install -r requirements.txt` 실행
+3. `python cleanup_novel.py` 로 시작
 
 ## 주의사항
 
@@ -107,4 +70,4 @@ ex)
 
 ## 라이선스
 
-이 프로젝트는 MIT 라이선스 하에 배포됩니다. 
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
