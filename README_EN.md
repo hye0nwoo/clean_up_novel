@@ -13,6 +13,17 @@ Similar to the file name organizer but specialized for managing novel files.
 Files with similar names are grouped together, allowing you to keep one file and move the rest to a duplicates folder.
 (Similarity threshold: 0.75 - detects more files as similar)
 
+## Technology Stack
+
+### Core Technologies
+- **Python 3.8+**: Main programming language
+- **xxHash**: Fast hash-based duplicate detection
+- **tqdm**: Progress bar display
+- **psutil**: System resource monitoring
+
+### Build & Deployment
+- **PyInstaller**: Executable file creation
+
 ## Key Features
 
 - txt and epub file processing
