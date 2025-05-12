@@ -47,7 +47,7 @@ Files with similar names are grouped together, allowing you to keep one file and
 
 ### For Users
 Download and run from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
-- [`소설 파일 중복 검사_CLI 1.0.3.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.3/소설.파일.중복.검사_CLI.1.0.3.exe): Lightweight command-line version (Portable version, no installation required)
+- [`Novel File Duplicate Checker_CLI 1.0.3.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.3/cleanup_novel_CLI.1.0.3.exe): Lightweight command-line version (Portable version, no installation required)
 
 ※ If you see an "Unknown Publisher" warning, click "More Info" and then "Run anyway".
 
