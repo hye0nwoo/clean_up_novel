@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/status-completed-green)](README_EN.md)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.2-blue)](README_EN.md)
+[![Version](https://img.shields.io/badge/Version-1.0.3-blue)](README_EN.md)
 
 A command-line program that finds and organizes duplicate novel files (.txt, .epub) in your collection.
 Similar to the file name organizer but specialized for managing novel files.
@@ -47,7 +47,7 @@ Files with similar names are grouped together, allowing you to keep one file and
 
 ### For Users
 Download and run from the [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) page:
-- [`소설 파일 중복 검사_CLI 1.0.2.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.2/소설.파일.중복.검사_CLI.1.0.2.exe): Lightweight command-line version (Portable version, no installation required)
+- [`소설 파일 중복 검사_CLI 1.0.3.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.3/소설.파일.중복.검사_CLI.1.0.3.exe): Lightweight command-line version (Portable version, no installation required)
 
 ※ If you see an "Unknown Publisher" warning, click "More Info" and then "Run anyway".
 

@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/상태-개발완료-green)](README.md)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.2-blue)](README.md)
+[![Version](https://img.shields.io/badge/Version-1.0.3-blue)](README.md)
 
 소장용 또는 기타 이유로 개인이 가진 다량의 중복된 텍스트 및 epub 파일을 찾아 정리해주는 CLI 프로그램입니다.  
 파일이름정리프로그램과 비슷하지만 소설관리쪽으로 특화된 프로그램입니다.  
@@ -21,7 +21,6 @@ ex)
 
 ### 핵심 기술
 - **Python 3.8+**: 메인 프로그래밍 언어
-- **xxHash**: 빠른 해시 기반 중복 검사
 - **tqdm**: 진행 상황 표시
 - **psutil**: 시스템 리소스 모니터링
 
@@ -34,7 +33,6 @@ ex)
 - 중복 파일 검출 및 이동
 - 하위 폴더 검사
 - 파일명 정규화 (메타데이터 태그 제거, 구분자 통일 등)
-- 해시 기반 중복 검사
 - 권수 패턴 인식
 - 시리즈 중복 제외
 - 멀티스레드 처리
@@ -51,7 +49,7 @@ ex)
 
 ### 일반 사용자
 [releases](https://github.com/hye0nwoo/clean_up_novel/releases/latest) 페이지에서 원하는 버전을 다운로드하여 실행하세요:
-- [`소설 파일 중복 검사_CLI 1.0.2.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.2/소설.파일.중복.검사_CLI.1.0.2.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
+- [`소설 파일 중복 검사_CLI 1.0.3.exe`](https://github.com/hye0nwoo/clean_up_novel/releases/download/1.0.3/소설.파일.중복.검사_CLI.1.0.3.exe): 가벼운 명령줄 버전 (무설치 포터블 버전)
 
 ※ 알 수 없는 게시자 경고가 뜬다면 추가정보 --> 실행 버튼을 누르면 됩니다.
 
