@@ -58,7 +58,7 @@ ex)
 
 1. Python 3.8 이상 설치
 2. `pip install -r requirements.txt` 실행
-3. `python cleanup_novel.py` 로 시작
+3. `python main.py` 로 시작
 
 ## 주의사항
 

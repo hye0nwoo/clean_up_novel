@@ -1,39 +1,13 @@
 # Python
 __pycache__/          # 파이썬 컴파일된 바이트코드 캐시 디렉토리
 *.py[cod]             # .pyc, .pyo, .pyd 파일 (컴파일된 파이썬 파일)
-*$py.class           # Jython이 생성하는 클래스 파일
 *.so                 # C/C++ 확장 모듈 컴파일 파일
-.Python              # 가상환경 심볼릭 링크
 build/               # 빌드 디렉토리
-develop-eggs/        # 개발용 egg 파일
 dist/                # 배포용 파일 디렉토리
-downloads/           # 다운로드된 파일들
-eggs/                # Python eggs
-.eggs/              # Python eggs 메타데이터
-lib/                # 라이브러리 디렉토리
-lib64/              # 64비트 라이브러리 디렉토리
-parts/              # buildout 부품 디렉토리
-sdist/              # 소스 배포 디렉토리
-var/                # 변수 파일 디렉토리
-wheels/             # pip wheels 디렉토리
 *.egg-info/         # 프로젝트 메타데이터
-.installed.cfg      # buildout 설정 파일
-*.egg               # Python egg 파일
 .venv/              # 가상환경 디렉토리
 venv/               # 가상환경 디렉토리 (다른 이름)
 ENV/                # 또 다른 가상환경 디렉토리
-
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-package-lock.json
 
 # IDE
 .vscode/
@@ -44,9 +18,6 @@ package-lock.json
 # Project specific
 duplicates/
 *.spec
-*.pyc
-*.pyo
-*.pyd
 *.exe
 !releases/*.exe  # releases 폴더의 exe 파일은 포함
 
@@ -57,19 +28,4 @@ desktop.ini
 
 # Logs
 *.log
-logs/
-
-# Test coverage
-coverage/
-.coverage
-htmlcov/
-
-# Cache
-.cache/
-.pytest_cache/
-
-# Documentation
-**/CODE_DOCUMENTATION.md
-**/DOCUMENTATION.md
-docs/
-documentation/ 
+logs/ 

@@ -56,7 +56,7 @@ To run the source code:
 
 1. Install Python 3.8 or higher
 2. Run `pip install -r requirements.txt`
-3. Start with `python cleanup_novel.py`
+3. Start with `python main.py`
 
 ## Precautions
 
