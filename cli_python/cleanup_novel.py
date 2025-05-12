@@ -36,7 +36,6 @@ SYSTEM_MEMORY = psutil.virtual_memory()
 AVAILABLE_MEMORY = SYSTEM_MEMORY.available
 
 # 메모리 관련 상수 설정
-MAX_FILE_SIZE = 50 * 1024 * 1024  # 최대 파일 크기 50MB
 BATCH_SIZE = 100  # 배치 사이즈
 CACHE_SIZE = min(32768, int(AVAILABLE_MEMORY / (1024 * 1024)))  # 캐시 크기
 
@@ -284,11 +283,6 @@ def process_file_batch(files: List[Path], batch_size: int = BATCH_SIZE) -> List[
         chunk_results = []
         for file in chunk:
             try:
-                file_size = file.stat().st_size
-                if file_size > MAX_FILE_SIZE:
-                    print(f"경고: {file.name}의 크기가 50MB를 초과합니다. 건너뜁니다.")
-                    continue
-                    
                 result = process_file(file)
                 if result:
                     chunk_results.append(result)
